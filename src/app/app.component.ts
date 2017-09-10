@@ -1,10 +1,26 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FlickrService} from '../services/flickr.service';
+import {FormBuilder, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [FlickrService]
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+  searchControl = new FormControl();
+  photos: Object;
+  constructor(private _formBuilder: FormBuilder, private _flickrService: FlickrService) {
+  }
+  ngOnInit() {
+    this.searchControl.valueChanges
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .switchMap((query: string) => this._flickrService.getResult(query))
+      .subscribe(value => {
+        alert(value.toString());
+        this.photos = value;
+      });
+  }
 }
