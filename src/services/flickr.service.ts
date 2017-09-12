@@ -10,14 +10,11 @@ export class FlickrService {
   constructor(private _http: Http) { }
 
   getResult(query: string) {
-    const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.key}
-               &text=${query}&per_page=3&format=json&nojsoncallback=1`;
-    alert(url);
+    const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${this.key}&tag_mode=all&tags=${query}&text=${query}&per_page=50&format=json&nojsoncallback=1`;
     return this._http
       .get(url)
       .map(res => res.json())
       .map((val) => {
-        alert('val.stat === \'ok\' ???? ' + val.stat);
         if (val.stat === 'ok') {
           return val.photos.photo.map((photo: any) => {
             return {

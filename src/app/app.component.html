@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Angular2 Observables Demo</a>
+      <h1><img src="../images/flickr-logo-5221212.png" alt="Search Flickr Images" width="3000" height="1500"></h1>
     </div>
   </div>
 </nav>
@@ -9,17 +9,29 @@
   <div class="row">
     <input type="search" [formControl]="searchControl">
   </div>
-  <div class="row">
+<!--  <div class="row">
     <div *ngFor="let photo of photos">
-      <div class="col s4">
+      <div>
         <div class="card">
           <div class="card-image">
+            <h1><span class="card-title">{{photo.title}}</span></h1>
             <img src={{photo.url}}>
-            <span class="card-title">{{photo.title}}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </div>
         </div>
       </div>
     </div>
+  </div>-->
+
+  <div class="row">
+    <div *ngFor="let photo of photos">
+  <div class="card" style="width: 70rem;">
+    <div class="card-block">
+      <h1><span class="card-title">{{photo.title}}</span></h1>
+      <img src={{photo.url}}>
+    </div>
   </div>
+      </div>
+    </div>
 </div>
 

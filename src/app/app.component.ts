@@ -19,8 +19,7 @@ export class AppComponent implements OnInit {
       .distinctUntilChanged()
       .switchMap((query: string) => this._flickrService.getResult(query))
       .subscribe(value => {
-        alert(value.toString());
-        this.photos = value;
+       this.photos = value;
       });
   }
 }
